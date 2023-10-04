@@ -1,145 +1,150 @@
-# EX 2 Data Manipulation Language (DML) Commands and built in functions in SQL
+## EX-2-Data-Manipulation-Language-DML-and-Data-Control-Language-DCL-Commands
 ## AIM:
 To create a manager database and execute DML queries using SQL.
 
-
 ## DML(Data Manipulation Language)
-<div align="justify">
 The SQL commands that deal with the manipulation of data present in the database belong to DML or Data Manipulation Language and this includes most of the SQL statements. It is the component of the SQL statement that controls access to data and to the database. Basically, DCL statements are grouped with DML statements.
-</div>
+### List of DML commands:
+INSERT: It is used to insert data into a table.
 
-## List of DML commands: 
-<div align="justify">
-INSERT: It is used to insert data into a table.<br>
-UPDATE: It is used to update existing data within a table.<br>
-DELETE: It is used to delete records from a database table.<br>
-</div>
+UPDATE: It is used to update existing data within a table.
 
-## Create the table as given below:
-```sql
-create table manager(enumber number(6),ename char(15),salary number(5),commission number(4),annualsalary number(7),Hiredate date,designation char(10),deptno number(2),reporting char(10));
+DELETE: It is used to delete records from a database table.
+
+### Create the table as given below:
+``` sql
+create table manager(enumber number(6),ename char(15),salary number(5),
+                      commission number(4),annualsalary number(7),Hiredate date,
+                      designation char(10),deptno number(2),reporting char(10));
 ```
-## insert the following values into the table
+### insert the following values into the table
 ```sql
 insert into manager values(7369,'Dharsan',2500,500,30000,'30-June-81','clerk',10,'John');
 insert into manager values(7839,'Subu',3000,400,36000,'1-Jul-82','manager',null,'James');
 insert into manager values(7934,'Aadhi',3500,300,42000,'1-May-82','manager',30,NULL);
 insert into manager values(7788,'Vikash',4000,0,48000,'12-Aug-82','clerk',50,'Bond');
 ```
-
 ### Q1) Update all the records of manager table by increasing 10% of their salary as bonus.
-
 ### QUERY:
-
-
+```sql
+update manager set salary=salary+(salary*0.10);
+```
 ### OUTPUT:
+![image](https://github.com/SandhiyaR1/EX-2-Data-Manipulation-Language-DML-and-Data-Control-Language-DCL-Commands/assets/113497571/0900f7d5-81d4-490f-a278-71af8b0c2229)
+
 
 ### Q2) Delete the records from manager table where the salary less than 2750.
-
-
 ### QUERY:
-
-
+```sql
+delete from manager where salary<2750;
+```
 ### OUTPUT:
+![image](https://github.com/SandhiyaR1/EX-2-Data-Manipulation-Language-DML-and-Data-Control-Language-DCL-Commands/assets/113497571/5ab3ab31-b044-4498-b084-a18f0b637494)
+
 
 ### Q3) Display each name of the employee as “Name” and annual salary as “Annual Salary” (Note: Salary in emp table is the monthly salary)
-
-
 ### QUERY:
-
-
+```sql
+select ename as "Name",salary*12 as "Annual salary" from manager;
+```
 ### OUTPUT:
+![image](https://github.com/SandhiyaR1/EX-2-Data-Manipulation-Language-DML-and-Data-Control-Language-DCL-Commands/assets/113497571/597a5840-fa06-4cd3-86c7-a7805c26eaa3)
 
-### Q5)	List the names of Clerks from emp table.
+### Q4) List the names of Clerks from emp table.
+#### QUERY:
+```sql
+select ename from manager where designation='clerk';
+```
+### OUTPUT:
+![image](https://github.com/SandhiyaR1/EX-2-Data-Manipulation-Language-DML-and-Data-Control-Language-DCL-Commands/assets/113497571/c7d0547d-5ab1-42e3-aaf2-727dc5441778)
 
 
+### Q5) List the names of employee who are not Managers.
 ### QUERY:
-
-
+```sql
+select ename from manager where designation <> 'manager';
+```
 ### OUTPUT:
+![image](https://github.com/SandhiyaR1/EX-2-Data-Manipulation-Language-DML-and-Data-Control-Language-DCL-Commands/assets/113497571/cfc1bd6a-bf8e-4563-925c-b1f2d35e7e0c)
 
 
-### Q6)	List the names of employee who are not Managers.
-
-
+### Q6) List the names of employees not eligible for commission.
 ### QUERY:
-
-
+```sql
+select ename from manager where commission=0;
+```
 ### OUTPUT:
+![image](https://github.com/SandhiyaR1/EX-2-Data-Manipulation-Language-DML-and-Data-Control-Language-DCL-Commands/assets/113497571/81e7b526-3937-450b-b5bc-b6f0ea1f1423)
 
-
-### Q7)	List the names of employees not eligible for commission.
-
-
+### Q7) List employees whose name either start or end with ‘s’.
 ### QUERY:
-
-
+```sql
+select ename from manager where ename like '%S' or ename like 'S%';
+```
 ### OUTPUT:
+![image](https://github.com/SandhiyaR1/EX-2-Data-Manipulation-Language-DML-and-Data-Control-Language-DCL-Commands/assets/113497571/51af7c27-3c1a-4acb-aba0-1aa6ca1fbc20)
 
-
-### Q8)	List employees whose name either start or end with ‘s’.
-
-
+### Q8) Sort emp table in ascending order by hire-date and list ename, job, deptno and hire-date.
 ### QUERY:
+```sql
+select ename,designation as "job",deptno,hiredate from manager order by hiredate asc;
+```
+#### OUTPUT:
+![image](https://github.com/SandhiyaR1/EX-2-Data-Manipulation-Language-DML-and-Data-Control-Language-DCL-Commands/assets/113497571/dd2abae8-c56c-41ec-90e7-4c6ec72f051d)
 
-
-### OUTPUT:
-
-
-### Q9) Sort emp table in ascending order by hire-date and list ename, job, deptno and hire-date.
-
-
+### Q9) List the Details of Employees who have joined before 30 Sept 81.
 ### QUERY:
-
-
+```sql
+select * from manager where hiredate<to_date('1981-09-30','YYYY-MM-DD');
+```
 ### OUTPUT:
+![image](https://github.com/SandhiyaR1/EX-2-Data-Manipulation-Language-DML-and-Data-Control-Language-DCL-Commands/assets/113497571/65e65177-b708-4011-bbac-2b13028b0f80)
 
-
-### Q10) List the Details of Employees who have joined before 30 Sept 81.
-
-
+### Q10) List ename, deptno and sal after sorting emp table in ascending order by deptno and then descending order by sal.
 ### QUERY:
-
-
+```sql
+select ename,deptno,salary from manager order by deptno asc,salary desc;
+```
 ### OUTPUT:
+![image](https://github.com/SandhiyaR1/EX-2-Data-Manipulation-Language-DML-and-Data-Control-Language-DCL-Commands/assets/113497571/5750222b-ef07-4224-9b9d-f9be2045e130)
 
-
-### Q11)	List ename, deptno and sal after sorting emp table in ascending order by deptno and then descending order by sal.
-
-
+### Q11) List the names of employees not belonging to dept no 30,40 & 10
 ### QUERY:
-
-
+```sql
+select ename from manager where deptno not in (30,40,10);
+```
 ### OUTPUT:
+![image](https://github.com/SandhiyaR1/EX-2-Data-Manipulation-Language-DML-and-Data-Control-Language-DCL-Commands/assets/113497571/4ba770dd-eb28-422e-8abf-30bea0740619)
 
 
-### Q12) List the names of employees not belonging to dept no 30,40 & 10
-
-
+#### Q12) Find number of rows in the table EMP
 ### QUERY:
-
-
+```sql
+select count(*) from manager;
+```
 ### OUTPUT:
+![image](https://github.com/SandhiyaR1/EX-2-Data-Manipulation-Language-DML-and-Data-Control-Language-DCL-Commands/assets/113497571/cd1e6e01-8088-40f4-9a52-830a04272730)
 
-### Q13) Find number of rows in the table EMP
-
+### Q13) Find maximum, minimum and average salary in EMP table.
 ### QUERY:
-
-
+```sql
+select max(salary) from manager;
+select min(salary) from manager;
+select avg(salary) from manager;
+```
 ### OUTPUT:
+![image](https://github.com/SandhiyaR1/EX-2-Data-Manipulation-Language-DML-and-Data-Control-Language-DCL-Commands/assets/113497571/7be1ddf9-4352-47c0-8fde-52530303619c)
+![image](https://github.com/SandhiyaR1/EX-2-Data-Manipulation-Language-DML-and-Data-Control-Language-DCL-Commands/assets/113497571/a145cc46-eb1c-4796-bd70-f7ca4faea2e2)
+![image](https://github.com/SandhiyaR1/EX-2-Data-Manipulation-Language-DML-and-Data-Control-Language-DCL-Commands/assets/113497571/8d312abd-5a25-4a6a-abb2-65291cb4c669)
 
-
-### Q14) Find maximum, minimum and average salary in EMP table.
-
+### Q14) List the jobs and number of employees in each job. The result should be in the descending order of the number of employees.
 ### QUERY:
-
-
+```sql
+SELECT designation AS job, COUNT(*) AS num_employees FROM manager GROUP BY designation ORDER BY num_employees DESC;
+```
 ### OUTPUT:
+![image](https://github.com/SandhiyaR1/EX-2-Data-Manipulation-Language-DML-and-Data-Control-Language-DCL-Commands/assets/113497571/1fd4b4bd-2c73-42a6-b76e-c3e83fed9bc3)
 
 
-### Q15) List the jobs and number of employees in each job. The result should be in the descending order of the number of employees.
-
-### QUERY:
-
-
-### OUTPUT:
+# RESULT:
+To create a manager database and execute DML queries using SQL is executed successfully.
